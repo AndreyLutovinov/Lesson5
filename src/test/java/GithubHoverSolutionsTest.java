@@ -1,5 +1,6 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,13 +12,12 @@ import static com.codeborne.selenide.Selenide.open;
 public class GithubHoverSolutionsTest {
 
     @BeforeAll
-    static void beforAllSetup(){
+    static void beforAllSetup() {
         Configuration.browserSize = "2560x1440";
         Configuration.pageLoadStrategy = "eager";
 
-
-
     }
+
     @Test
 void hoverSolutionsTest(){
         open("https://github.com");
@@ -27,6 +27,10 @@ void hoverSolutionsTest(){
        $("#hero-section-brand-heading").shouldHave(text("The AI-powered developer platform"));
     }
 
+    @AfterEach
+    void afterEachTest() {
+        Selenide.closeWebDriver();
+    }
 
 
 }
